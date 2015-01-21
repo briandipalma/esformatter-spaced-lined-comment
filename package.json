@@ -1,0 +1,23 @@
+{
+  "name": "esformatter-spaced-lined-comment",
+  "version": "1.0.0",
+  "description": "esformatter plugin for adding a space as the first character in a line comment",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/briandipalma/esformatter-spaced-lined-comment.git"
+  },
+  "keywords": [
+    "esformatter",
+    "plugin"
+  ],
+  "author": "Brian Di Palma",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^0.12.0",
+    "mocha": "^2.1.0"
+  }
+}
