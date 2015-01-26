@@ -19,6 +19,7 @@
   "author": "Brian Di Palma",
   "license": "ISC",
   "devDependencies": {
+    "esformatter": "^0.4.3",
     "eslint": "^0.12.0",
     "mocha": "^2.1.0"
   }
