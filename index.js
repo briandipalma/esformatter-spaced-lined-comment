@@ -1,4 +1,9 @@
 'use strict';
 
-module.exports.tokenBefore = function() {
+var rocamboleToken = require('rocambole-token');
+
+module.exports.tokenBefore = function(token) {
+	if (token.type === 'LineComment') {
+		token.raw = '// ' + token.value;
+	}
 };
