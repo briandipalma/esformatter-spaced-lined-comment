@@ -9,13 +9,15 @@ var spacedLinedCommentPlugin = require('./');
 
 esformatter.register(spacedLinedCommentPlugin);
 
-mocha.it('test', function() {
-	// Given.
-	var codeStr = '//Comment string';
+mocha.describe('spaced-lined-comment', function() {
+	mocha.it('should add a space to comment if it lacks a space.', function() {
+		// Given.
+		var codeStr = '//Comment string';
 
-	// When.
-	var formattedCode = esformatter.format(codeStr);
+		// When.
+		var formattedCode = esformatter.format(codeStr);
 
-	// Then.
-	assert.equal(formattedCode, '// Comment string');
+		// Then.
+		assert.equal(formattedCode, '// Comment string');
+	})
 });
