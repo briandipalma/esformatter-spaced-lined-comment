@@ -1,15 +1,7 @@
 'use strict';
 
-var noWhitespace = /^\w+/;
-
 module.exports.tokenBefore = function(token) {
-	if(!token.value || token.type !== 'LineComment') {
-		return;
-	}
-
-	if (noWhitespace.test(token.value)) {
+	if (token.type === 'LineComment' && token.value.match(/^\S/)) {
 		token.raw = '// ' + token.value;
-		return;
 	}
-
 };
