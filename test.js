@@ -66,5 +66,47 @@ mocha.describe('spaced-lined-comment', function() {
 		assert.equal(formattedCode, '//   ');
 	})
 
+	mocha.it('should avoid transforming block comments', function() {
+		// Given.
+		var codeStr = '/*some comment */';
 
+		// When.
+		var formattedCode = esformatter.format(codeStr);
+
+		// Then.
+		assert.equal(formattedCode, codeStr);
+	})
+
+    mocha.it('should avoid transforming a comment like string', function() {
+		// Given.
+        var codeStr = 'var url = "//somethingfornothing.com";';
+
+		// When.
+		var formattedCode = esformatter.format(codeStr);
+
+		// Then.
+		assert.equal(formattedCode, codeStr);
+	})
+
+    mocha.it('should transform 2 consecutive line comments', function() {
+		// Given.
+        var codeStr = '//TODO: something\n//FIXME: other thing';
+
+		// When.
+		var formattedCode = esformatter.format(codeStr);
+
+		// Then.
+        assert.equal(formattedCode, '// TODO: something\n// FIXME: other thing');
+	})
+
+    mocha.it('should transform correctly with a comment inside a comment', function() {
+		// Given.
+        var codeStr = '//TODO: something//fornothing';
+
+		// When.
+		var formattedCode = esformatter.format(codeStr);
+
+		// Then.
+        assert.equal(formattedCode, '// TODO: something//fornothing');
+	})
 });
