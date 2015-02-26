@@ -19,7 +19,7 @@ mocha.describe('spaced-lined-comment', function() {
 
 		// Then.
 		assert.equal(formattedCode, '// Comment string');
-	})
+	});
 
 	mocha.it('should not modify a comment if it has a leading space.', function() {
 		// Given.
@@ -30,7 +30,7 @@ mocha.describe('spaced-lined-comment', function() {
 
 		// Then.
 		assert.equal(formattedCode, '// Comment string');
-	})
+	});
 
 	mocha.it('should not modify a comment if it has many leading spaces.', function() {
 		// Given.
@@ -41,7 +41,7 @@ mocha.describe('spaced-lined-comment', function() {
 
 		// Then.
 		assert.equal(formattedCode, '//  Comment string');
-	})
+	});
 
 	mocha.it('should not add a space if there is no text after slashes', function() {
 		// Given.
@@ -52,8 +52,7 @@ mocha.describe('spaced-lined-comment', function() {
 
 		// Then.
 		assert.equal(formattedCode, '//');
-	})
-
+	});
 
 	mocha.it('should avoid adding more whitespace', function() {
 		// Given.
@@ -64,7 +63,7 @@ mocha.describe('spaced-lined-comment', function() {
 
 		// Then.
 		assert.equal(formattedCode, '//   ');
-	})
+	});
 
 	mocha.it('should avoid transforming block comments', function() {
 		// Given.
@@ -75,38 +74,38 @@ mocha.describe('spaced-lined-comment', function() {
 
 		// Then.
 		assert.equal(formattedCode, codeStr);
-	})
+	});
 
-    mocha.it('should avoid transforming a comment like string', function() {
+	mocha.it('should avoid transforming a comment like string', function() {
 		// Given.
-        var codeStr = 'var url = "//somethingfornothing.com";';
+		var codeStr = 'var url = "//somethingfornothing.com";';
 
 		// When.
 		var formattedCode = esformatter.format(codeStr);
 
 		// Then.
 		assert.equal(formattedCode, codeStr);
-	})
+	});
 
-    mocha.it('should transform 2 consecutive line comments', function() {
+	mocha.it('should transform 2 consecutive line comments', function() {
 		// Given.
-        var codeStr = '//TODO: something\n//FIXME: other thing';
+		var codeStr = '//TODO: something\n//FIXME: other thing';
 
 		// When.
 		var formattedCode = esformatter.format(codeStr);
 
 		// Then.
-        assert.equal(formattedCode, '// TODO: something\n// FIXME: other thing');
-	})
+		assert.equal(formattedCode, '// TODO: something\n// FIXME: other thing');
+	});
 
-    mocha.it('should transform correctly with a comment inside a comment', function() {
+	mocha.it('should transform correctly with a comment inside a comment', function() {
 		// Given.
-        var codeStr = '//TODO: something//fornothing';
+		var codeStr = '//TODO: something//fornothing';
 
 		// When.
 		var formattedCode = esformatter.format(codeStr);
 
 		// Then.
-        assert.equal(formattedCode, '// TODO: something//fornothing');
-	})
+		assert.equal(formattedCode, '// TODO: something//fornothing');
+	});
 });
