@@ -2,15 +2,16 @@
 
 var assert = require('assert');
 
-var mocha = require('mocha');
+var it = require('mocha').it;
+var describe = require('mocha').describe;
 var esformatter = require('esformatter');
 
 var spacedLinedCommentPlugin = require('./');
 
 esformatter.register(spacedLinedCommentPlugin);
 
-mocha.describe('spaced-lined-comment', function() {
-	mocha.it('should add a space to comment if it lacks a space.', function() {
+describe('spaced-lined-comment', function() {
+	it('should add a space to comment if it lacks a space.', function() {
 		// Given.
 		var codeStr = '//Comment string';
 
@@ -21,7 +22,7 @@ mocha.describe('spaced-lined-comment', function() {
 		assert.equal(formattedCode, '// Comment string');
 	});
 
-	mocha.it('should not modify a comment if it has a leading space.', function() {
+	it('should not modify a comment if it has a leading space.', function() {
 		// Given.
 		var codeStr = '// Comment string';
 
@@ -32,7 +33,7 @@ mocha.describe('spaced-lined-comment', function() {
 		assert.equal(formattedCode, '// Comment string');
 	});
 
-	mocha.it('should not modify a comment if it has many leading spaces.', function() {
+	it('should not modify a comment if it has many leading spaces.', function() {
 		// Given.
 		var codeStr = '//  Comment string';
 
@@ -43,7 +44,7 @@ mocha.describe('spaced-lined-comment', function() {
 		assert.equal(formattedCode, '//  Comment string');
 	});
 
-	mocha.it('should not add a space if there is no text after slashes', function() {
+	it('should not add a space if there is no text after slashes', function() {
 		// Given.
 		var codeStr = '//';
 
@@ -54,7 +55,7 @@ mocha.describe('spaced-lined-comment', function() {
 		assert.equal(formattedCode, '//');
 	});
 
-	mocha.it('should avoid adding more whitespace', function() {
+	it('should avoid adding more whitespace', function() {
 		// Given.
 		var codeStr = '//   ';
 
@@ -65,7 +66,7 @@ mocha.describe('spaced-lined-comment', function() {
 		assert.equal(formattedCode, '//   ');
 	});
 
-	mocha.it('should avoid transforming block comments', function() {
+	it('should avoid transforming block comments', function() {
 		// Given.
 		var codeStr = '/*some comment */';
 
@@ -76,7 +77,7 @@ mocha.describe('spaced-lined-comment', function() {
 		assert.equal(formattedCode, codeStr);
 	});
 
-	mocha.it('should avoid transforming a comment like string', function() {
+	it('should avoid transforming a comment like string', function() {
 		// Given.
 		var codeStr = 'var url = "//somethingfornothing.com";';
 
@@ -87,7 +88,7 @@ mocha.describe('spaced-lined-comment', function() {
 		assert.equal(formattedCode, codeStr);
 	});
 
-	mocha.it('should transform 2 consecutive line comments', function() {
+	it('should transform 2 consecutive line comments', function() {
 		// Given.
 		var codeStr = '//TODO: something\n//FIXME: other thing';
 
@@ -98,7 +99,7 @@ mocha.describe('spaced-lined-comment', function() {
 		assert.equal(formattedCode, '// TODO: something\n// FIXME: other thing');
 	});
 
-	mocha.it('should transform correctly with a comment inside a comment', function() {
+	it('should transform correctly with a comment inside a comment', function() {
 		// Given.
 		var codeStr = '//TODO: something//fornothing';
 
